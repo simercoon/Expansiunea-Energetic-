@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expansiunea Energetică</title>
+<meta name="description" content="Provocare de 20 de zile pentru expandarea energiei tale">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap">
+<style>
+  :root{
+    --void: #060a18;
+    --void-2: #0a1230;
+    --panel: rgba(20,32,66,0.55);
+    --panel-line: rgba(80,140,245,0.20);
+    --ink: #eaf0fc;
+    --ink-soft: #aebfdd;
+    --ink-faint: #7d8bad;
+    --violet: #4f8ff5;
+    --violet-bright: #83b4ff;
+    --gold: #e8c878;
+    --gold-soft: #f0dca6;
+    --maxw: 1080px;
+    --r: 18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 700px at 78% -8%, rgba(80,140,245,0.20), transparent 60%),
+      radial-gradient(900px 600px at 12% 8%, rgba(232,200,120,0.10), transparent 55%),
+      linear-gradient(180deg, var(--void) 0%, var(--void-2) 45%, var(--void) 100%);
+    background-attachment: fixed;
+    color:var(--ink);
+    font-family:"Manrope", system-ui, -apple-system, sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  #stars{position:fixed; inset:0; z-index:0; pointer-events:none;}
+  .wrap{position:relative; z-index:1; max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-size:.74rem; letter-spacing:.42em; text-transform:uppercase;
+    color:var(--gold-soft); font-weight:600; margin:0 0 20px;
+  }
+  h1,h2,h3{font-family:"Cormorant Garamond", Georgia, serif; font-weight:500; text-wrap:balance; margin:0;}
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{min-height:92vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:120px 24px 90px; position:relative;}
+  .hero .eyebrow{animation:rise .9s ease both .1s}
+  .hero h1{
+    font-size:clamp(3rem, 9vw, 6.4rem); line-height:0.98; letter-spacing:-0.01em;
+    margin:0 0 8px; animation:rise 1s ease both .2s;
+  }
+  .hero h1 .accent{
+    font-style:italic; font-weight:400;
+    background:linear-gradient(100deg, var(--gold-soft), var(--violet-bright));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .lede{
+    max-width:640px; margin:26px auto 0; font-size:clamp(1.05rem,2.4vw,1.28rem);
+    color:var(--ink-soft); font-weight:300; animation:rise 1s ease both .35s;
+  }
+  .days-badge{
+    display:inline-flex; align-items:baseline; gap:.5ch; margin:34px 0 0;
+    font-family:"Cormorant Garamond",serif; animation:rise 1s ease both .45s;
+  }
+  .days-badge b{font-size:2.4rem; font-weight:600; color:var(--gold);}
+  .days-badge span{font-size:.8rem; letter-spacing:.34em; text-transform:uppercase; color:var(--ink-faint);}
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:40px; animation:rise 1s ease both .55s;}
+  .btn{
+    display:inline-block; padding:16px 38px; border-radius:100px; font-weight:600;
+    font-size:1rem; text-decoration:none; cursor:pointer; border:1px solid transparent;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(100deg, var(--violet), var(--violet-bright));
+    color:#0b0820; box-shadow:0 12px 40px -12px rgba(80,140,245,.75);
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 20px 50px -12px rgba(80,140,245,.9);}
+  .btn-ghost{border-color:var(--panel-line); color:var(--ink); background:var(--panel);}
+  .btn-ghost:hover{transform:translateY(-3px); border-color:var(--violet);}
+  .scroll-hint{margin-top:56px; font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ink-faint); animation:pulse 2.6s ease-in-out infinite;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:100px 0; position:relative;}
+  .section-head{text-align:center; max-width:660px; margin:0 auto 60px;}
+  .section-head h2{font-size:clamp(2.1rem,5vw,3.3rem); line-height:1.05; margin-bottom:18px;}
+  .section-head p{color:var(--ink-soft); font-weight:300; font-size:1.08rem; margin:0;}
+  .em{font-style:italic; color:var(--gold-soft);}
+
+  /* ---------- DESCRIERE ---------- */
+  .lead-block{max-width:760px; margin:0 auto; text-align:center;}
+  .lead-block p{font-family:"Cormorant Garamond",serif; font-size:clamp(1.4rem,3.4vw,2rem); line-height:1.4; color:var(--ink); font-weight:400;}
+  .lead-block p .g{color:var(--gold-soft); font-style:italic;}
+
+  /* ---------- BENEFICII ---------- */
+  .grid{display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+  .card{
+    background:var(--panel); border:1px solid var(--panel-line); border-radius:var(--r);
+    padding:34px 30px; backdrop-filter:blur(8px);
+  }
+  .card .num-mark{font-family:"Cormorant Garamond",serif; font-size:1.6rem; color:var(--gold); display:block; margin-bottom:14px;}
+  .card h3{font-size:1.5rem; margin-bottom:10px; color:var(--violet-bright);}
+  .card p{margin:0; color:var(--ink-soft); font-weight:300; font-size:.98rem;}
+
+  /* ---------- PENTRU CINE ---------- */
+  .forwho{background:linear-gradient(180deg, transparent, rgba(80,140,245,.06), transparent);}
+  .who-list{max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:2px;}
+  .who-item{display:flex; gap:20px; align-items:flex-start; padding:22px 8px; border-bottom:1px solid var(--panel-line);}
+  .who-item:last-child{border-bottom:none;}
+  .who-item .star{color:var(--gold); font-size:1.1rem; line-height:1.7; flex:none;}
+  .who-item p{margin:0; font-size:1.08rem; color:var(--ink); font-weight:300;}
+
+  /* ---------- 20 DE ZILE ---------- */
+  .days{background:linear-gradient(180deg, transparent, rgba(12,9,32,.5));}
+  .days-acc{display:grid; grid-template-columns:repeat(2,1fr); gap:8px 16px; align-items:start; max-width:920px; margin:0 auto;}
+  details.day{background:var(--panel); border:1px solid var(--panel-line); border-radius:12px; transition:border-color .25s ease, background .25s ease;}
+  details.day[open]{border-color:var(--violet); background:rgba(20,32,66,0.75);}
+  details.day summary{list-style:none; cursor:pointer; padding:12px 16px; display:flex; align-items:baseline; gap:12px;}
+  details.day summary::-webkit-details-marker{display:none;}
+  details.day summary::after{content:"+"; margin-left:auto; color:var(--violet-bright); font-size:1.1rem; line-height:1; flex:none; padding-top:2px;}
+  details.day[open] summary::after{content:"–";}
+  .day-n{font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-soft); font-weight:700; flex:none; min-width:46px; padding-top:3px;}
+  .day-t{font-family:"Cormorant Garamond",serif; font-size:1.16rem; line-height:1.15; color:var(--ink); font-weight:500;}
+  details.day p{margin:0; padding:0 16px 14px 74px; font-size:.86rem; color:var(--ink-faint); font-weight:300; line-height:1.5;}
+  @media (max-width:640px){ .days-acc{grid-template-columns:1fr;} details.day p{padding-left:16px;} }
+
+  /* ---------- PROMO & DUPĂ PLATĂ ---------- */
+  .amt-old{font-size:1.5rem; color:var(--ink-faint); text-decoration:line-through; margin-right:12px; vertical-align:middle;}
+  .promo-label{max-width:360px; margin:0 auto 10px; font-size:.82rem; color:var(--ink-soft); font-weight:400; line-height:1.4;}
+  .promo{display:flex; gap:8px; max-width:340px; margin:0 auto 6px;}
+  .promo input{
+    flex:1; padding:12px 16px; border-radius:100px; border:1px solid var(--panel-line);
+    background:rgba(8,7,26,0.5); color:var(--ink); font-family:inherit; font-size:.92rem; letter-spacing:.04em;
+  }
+  .promo input::placeholder{color:var(--ink-faint); letter-spacing:normal;}
+  .promo input:focus{outline:none; border-color:var(--violet);}
+  .promo button{
+    padding:12px 22px; border-radius:100px; border:1px solid var(--violet); cursor:pointer;
+    background:transparent; color:var(--violet-bright); font-family:inherit; font-weight:600; font-size:.92rem;
+    transition:background .2s ease, color .2s ease;
+  }
+  .promo button:hover{background:var(--violet); color:#0b0820;}
+  .promo-msg{min-height:1.2em; margin:0 0 20px; font-size:.85rem; font-weight:500;}
+  .promo-msg.ok{color:var(--gold-soft);}
+  .promo-msg.err{color:#e88a8a;}
+  .after-pay{margin-top:26px; padding-top:26px; border-top:1px solid var(--panel-line);}
+  .after-pay-title{font-family:"Cormorant Garamond",serif; font-size:1.5rem; color:var(--gold-soft); margin:0 0 6px;}
+  .after-pay-text{color:var(--ink-soft); font-weight:300; font-size:.96rem; margin:0 0 18px;}
+
+  /* ---------- OFERTA / CTA ---------- */
+  .offer{text-align:center;}
+  .offer-card{
+    max-width:620px; margin:0 auto; padding:56px 40px;
+    background:radial-gradient(600px 400px at 50% -20%, rgba(80,140,245,.22), transparent 70%), var(--panel);
+    border:1px solid var(--violet); border-radius:26px;
+    box-shadow:0 30px 90px -40px rgba(80,140,245,.6);
+  }
+  .offer-card .eyebrow{margin-bottom:14px;}
+  .offer-card h2{font-size:clamp(2rem,5vw,3rem); margin-bottom:8px;}
+  .price{font-family:"Cormorant Garamond",serif; margin:24px 0 6px;}
+  .price .amt{font-size:3.4rem; font-weight:600; color:var(--gold);}
+  .price .cur{font-size:1.4rem; color:var(--ink-soft);}
+  .offer-card .fine{font-size:.85rem; color:var(--ink-faint); margin:2px 0 26px;}
+  .incl{list-style:none; padding:0; margin:0 auto 30px; max-width:380px; text-align:left; display:flex; flex-direction:column; gap:12px;}
+  .incl li{display:flex; gap:12px; color:var(--ink-soft); font-weight:300; font-size:.98rem;}
+  .incl li::before{content:"✦"; color:var(--gold); flex:none;}
+
+  footer{padding:60px 24px 70px; text-align:center; color:var(--ink-faint); border-top:1px solid var(--panel-line);}
+  footer .mark{font-family:"Cormorant Garamond",serif; font-style:italic; font-size:1.4rem; color:var(--ink-soft); margin-bottom:10px;}
+  footer p{margin:6px 0; font-size:.85rem;}
+
+  @keyframes rise{from{opacity:0; transform:translateY(24px)} to{opacity:1; transform:translateY(0)}}
+  @keyframes pulse{0%,100%{opacity:.4} 50%{opacity:.9}}
+  @media (prefers-reduced-motion:reduce){*{animation:none !important; scroll-behavior:auto;}}
+  @media (max-width:640px){ section{padding:72px 0;} .hero{padding:100px 20px 70px;} .offer-card{padding:44px 24px;} }
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Provocare de transformare · 20 de zile</p>
+    <h1>Expansiunea<br><span class="accent">Energetică</span></h1>
+    <p class="lede">O călătorie de douăzeci de zile prin care îți expandezi energia, până când începi să vibrezi la frecvența noului tău sine.</p>
+    <div class="days-badge"><b>20</b><span>zile de renaștere</span></div>
+    <div class="cta-row">
+      <a href="#oferta" class="btn btn-primary">Începe călătoria</a>
+      <a href="#program" class="btn btn-ghost">Vezi programul</a>
+    </div>
+    <div class="scroll-hint">↓ derulează</div>
+  </div>
+</header>
+
+<section id="despre">
+  <div class="wrap lead-block">
+    <p class="eyebrow">Ce este</p>
+    <p>Fiecare zi este un prag. Te desprinzi ușor de cine ai fost, îți <span class="g">înrădăcinezi noua energie</span> și înveți să locuiești în versiunea de tine care deja are tot ce își dorește. Nu forțezi nimic — te <span class="g">expandezi</span>.</p>
+  </div>
+</section>
+
+<section id="beneficii">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Ce vei trăi</p>
+      <h2>Ce se schimbă în tine</h2>
+      <p>Douăzeci de zile de practică, în care energia ta trece de la contractare la expansiune.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <span class="num-mark">✦</span>
+        <h3>O identitate nouă</h3>
+        <p>Te desprinzi de vechea poveste despre cine ești și activezi versiunea care corespunde vieții pe care o dorești.</p>
+      </div>
+      <div class="card">
+        <span class="num-mark">✦</span>
+        <h3>Convingere profundă</h3>
+        <p>Treci de la „îmi doresc" la „așa este". Convingerea devine noua ta stare firească, nu un efort zilnic.</p>
+      </div>
+      <div class="card">
+        <span class="num-mark">✦</span>
+        <h3>O nouă linie temporală</h3>
+        <p>Îți imaginezi, simți și activezi realitatea în care deja trăiești ca noul tău sine — și faci saltul spre ea.</p>
+      </div>
+      <div class="card">
+        <span class="num-mark">✦</span>
+        <h3>Arta de a primi</h3>
+        <p>Înveți să te deschizi, să eliberezi controlul și să primești cu ușurință tot ceea ce vine către tine.</p>
+      </div>
+      <div class="card">
+        <span class="num-mark">✦</span>
+        <h3>Energia saltului cuantic</h3>
+        <p>Ridici frecvența la care vibrezi, astfel încât realitatea să se rearanjeze în jurul noului tău sine.</p>
+      </div>
+      <div class="card">
+        <span class="num-mark">✦</span>
+        <h3>Ancorare zilnică</h3>
+        <p>O practică clară în fiecare zi, ca noua energie să nu rămână o idee, ci să devină felul tău de a fi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pentru-cine" class="forwho">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Pentru cine este</p>
+      <h2>Această provocare este pentru tine dacă…</h2>
+    </div>
+    <div class="who-list">
+      <div class="who-item"><span class="star">✦</span><p>Simți că ai depășit versiunea veche a ta și ești gata pentru cine urmează să devii.</p></div>
+      <div class="who-item"><span class="star">✦</span><p>Vrei să lucrezi cu energia și convingerea ta, nu doar cu liste de acțiuni și forțare.</p></div>
+      <div class="who-item"><span class="star">✦</span><p>Ai lucrat cu rănile tale și ai încercat manifestarea, dar simți că ceva te ține încă ancorat în vechea linie temporală.</p></div>
+      <div class="who-item"><span class="star">✦</span><p>Îți dorești o structură zilnică, clară, care să te ghideze pas cu pas timp de 20 de zile.</p></div>
+      <div class="who-item"><span class="star">✦</span><p>Ești pregătit să te expandezi și să vibrezi la frecvența noului tău sine, cât mai des cu putință.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="program" class="days">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Harta călătoriei</p>
+      <h2>Cele 20 de zile</h2>
+      <p>Fiecare zi are tema ei — o treaptă către frecvența noului tău sine.</p>
+    </div>
+    <p style="text-align:center; color:var(--ink-faint); font-size:.82rem; letter-spacing:.06em; margin:-38px auto 30px;">Apasă pe o zi pentru a-i vedea detaliile ✦</p>
+      <div class="days-acc" id="daysGrid"></div>
+  </div>
+</section>
+
+<section id="oferta" class="offer">
+  <div class="wrap">
+    <div class="offer-card">
+      <p class="eyebrow">Înscrie-te acum</p>
+      <h2>Expansiunea Energetică</h2>
+      <div class="price"><span class="amt-old" id="priceOld" hidden>111€</span><span class="amt" id="priceAmt">111</span><span class="cur">€</span></div>
+      <p class="fine">Acces complet la provocarea de 20 de zile</p>
+
+      <p class="promo-label">Cod de reducere pentru participanții din „Reinventarea Sinelui"</p>
+      <div class="promo">
+        <input id="promoInput" type="text" placeholder="Introdu codul aici" autocomplete="off" aria-label="Cod de reducere pentru participanții din Reinventarea Sinelui">
+        <button type="button" id="promoBtn">Aplică</button>
+      </div>
+      <p class="promo-msg" id="promoMsg" role="status"></p>
+
+      <ul class="incl">
+        <li>20 de zile de practici ghidate, temă cu temă</li>
+        <li>Exerciții de activare a noii identități și energii</li>
+        <li>Instrumente pentru salt în noua linie temporală</li>
+      </ul>
+
+      <a href="#" target="_blank" rel="noopener" class="btn btn-primary" id="payBtn" style="width:100%; max-width:360px;">Vreau să încep expansiunea · <span id="payAmt">111€</span></a>
+
+      <div class="after-pay" id="afterPay" hidden>
+        <p class="after-pay-title">✦ Ultimul pas</p>
+        <p class="after-pay-text">După ce ai finalizat plata, intră în grupul de WhatsApp — acolo începe călătoria împreună.</p>
+        <a href="https://chat.whatsapp.com/HxLbWQc53vFCIA5tXhOQ8Y?mode=gi_t" target="_blank" rel="noopener" class="btn btn-ghost">Intră în grupul de WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="mark">Expansiunea Energetică</div>
+  <p>Vibrează la frecvența noului tău sine.</p>
+  <p>© 2026 · Toate drepturile rezervate.</p>
+</footer>
+
+<script>
+  // Starfield
+  (function(){
+    const c = document.getElementById('stars');
+    const ctx = c.getContext('2d');
+    let stars = [], w, h, raf;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function resize(){
+      w = c.width = window.innerWidth;
+      h = c.height = window.innerHeight;
+      const count = Math.min(180, Math.floor(w*h/9000));
+      stars = Array.from({length:count}, () => ({
+        x: Math.random()*w, y: Math.random()*h,
+        r: Math.random()*1.4+0.2,
+        a: Math.random()*0.6+0.15,
+        tw: Math.random()*0.02+0.004,
+        hue: Math.random() > 0.82 ? 'gold' : 'white'
+      }));
+    }
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for(const s of stars){
+        s.a += s.tw;
+        if(s.a > 0.85 || s.a < 0.12) s.tw *= -1;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = s.hue === 'gold'
+          ? 'rgba(240,220,166,'+s.a+')'
+          : 'rgba(230,224,255,'+s.a+')';
+        ctx.fill();
+      }
+      raf = requestAnimationFrame(draw);
+    }
+    resize();
+    if(reduce){ draw(); cancelAnimationFrame(raf); } else { draw(); }
+    window.addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); if(!reduce) draw(); });
+  })();
+
+  // Zilele
+  const zile = [
+    ["Desprinderea de vechea identitate", "Îți lași în urmă vechiul sine și activezi noua identitate."],
+    ["Voi face tot ce este necesar", "Angajamentul deplin față de versiunea care urmează să devii."],
+    ["Crearea obiectivelor", "Dai formă clară dorințelor tale și le așezi în energie."],
+    ["Înrădăcinarea noii tale energii", "Ancorezi noua frecvență adânc în tine, ca să rămână."],
+    ["Era convingerii", "Treci de la speranță la certitudine liniștită."],
+    ["Povestea noii tale linii temporale", "Scrii narațiunea vieții pe care o alegi de acum."],
+    ["Activarea energiei noii linii temporale", "Aprinzi energia realității către care te miști."],
+    ["Eliberează și primește", "Dai drumul controlului și te deschizi să primești."],
+    ["Convingere profundă", "Convingerea coboară din minte în corp și devine stare."],
+    ["Imaginea noii tale linii temporale", "Vezi limpede realitatea în care deja trăiești."],
+    ["Devino Delulu", "Crezi cu îndrăzneală, dincolo de ce arată prezentul."],
+    ["Activarea energiei saltului cuantic", "Ridici vibrația pentru marele salt care vine."],
+    ["Partea de primire", "Te exersezi în arta de a lăsa binele să vină la tine."],
+    ["Cât de bine poate să fie?", "Extinzi limita a ceea ce îți permiți să trăiești."],
+    ["Salt în cronologie", "Te muți conștient în noua ta linie temporală."],
+    ["Simte", "Trăiești prin senzație realitatea dorită, aici și acum."],
+    ["Activarea", "Aprinzi complet energia noului tău sine."],
+    ["Eliberarea finală", "Lași să plece ultimul lucru care te mai ținea legat."],
+    ["Activarea identității și a saltului cuantic", "Unești noua identitate cu energia saltului."],
+    ["Saltul", "Pășești complet în noua ta realitate. Ai devenit."]
+  ];
+  const grid = document.getElementById('daysGrid');
+  zile.forEach((z, i) => {
+    const el = document.createElement('details');
+    el.className = 'day';
+    el.innerHTML = '<summary><span class="day-n">Ziua ' + (i+1) + '</span><span class="day-t">' + z[0] + '</span></summary>' +
+                   '<p>' + z[1] + '</p>';
+    grid.appendChild(el);
+  });
+
+  // ---- Plată, cod de reducere & redirecționare WhatsApp ----
+  const LINKS = {
+    paypalFull: "https://www.paypal.com/ncp/payment/3RQ82AWSMMD2Y",   // 111€
+    paypalDisc: "https://www.paypal.com/ncp/payment/MATBU6DXNU3A8"    // 55€
+  };
+  const PROMO_CODE = "EXPANSIUNE55";   // codul pentru clienții vechi
+  const FULL = 111, DISC = 55;
+
+  const payBtn  = document.getElementById('payBtn');
+  const payAmt  = document.getElementById('payAmt');
+  const priceAmt= document.getElementById('priceAmt');
+  const priceOld= document.getElementById('priceOld');
+  const promoIn = document.getElementById('promoInput');
+  const promoBtn= document.getElementById('promoBtn');
+  const promoMsg= document.getElementById('promoMsg');
+  const afterPay= document.getElementById('afterPay');
+
+  let discounted = false;
+  payBtn.href = LINKS.paypalFull;
+
+  function applyPromo(){
+    const code = promoIn.value.trim().toUpperCase();
+    if(!code){ promoMsg.textContent = "Introdu un cod de reducere."; promoMsg.className = "promo-msg err"; return; }
+    if(code === PROMO_CODE){
+      discounted = true;
+      priceAmt.textContent = DISC;
+      priceOld.hidden = false;
+      payAmt.textContent = DISC + "€";
+      payBtn.href = LINKS.paypalDisc;
+      promoMsg.textContent = "Cod aplicat — reducere de 50%. Prețul tău este 55€.";
+      promoMsg.className = "promo-msg ok";
+      promoIn.disabled = true; promoBtn.disabled = true; promoBtn.textContent = "✓";
+    } else {
+      promoMsg.textContent = "Cod invalid. Verifică și încearcă din nou.";
+      promoMsg.className = "promo-msg err";
+    }
+  }
+  promoBtn.addEventListener('click', applyPromo);
+  promoIn.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); applyPromo(); } });
+
+  // După ce apasă „plătește", arată pasul cu grupul de WhatsApp
+  payBtn.addEventListener('click', () => {
+    afterPay.hidden = false;
+    setTimeout(() => afterPay.scrollIntoView({behavior:'smooth', block:'center'}), 300);
+  });
+</script>
+</body>
+</html>
