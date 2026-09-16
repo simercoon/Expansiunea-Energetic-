@@ -386,10 +386,10 @@
   // ---- Plată, cod de reducere & redirecționare WhatsApp ----
   const LINKS = {
     paypalFull: "https://www.paypal.com/ncp/payment/3RQ82AWSMMD2Y",   // 111€
-    paypalDisc: "https://www.paypal.com/ncp/payment/MATBU6DXNU3A8"    // 55€
+    paypalDisc: "https://www.paypal.com/ncp/payment/MATBU6DXNU3A8"    // 77€
   };
-  const PROMO_CODE = "EXPANSIUNE55";   // codul pentru clienții vechi
-  const FULL = 111, DISC = 55;
+  const PROMO_CODE = "EXPANSIUNE77";
+  const FULL = 111, DISC = 77;
 
   const payBtn  = document.getElementById('payBtn');
   const payAmt  = document.getElementById('payAmt');
@@ -412,7 +412,7 @@
       priceOld.hidden = false;
       payAmt.textContent = DISC + "€";
       payBtn.href = LINKS.paypalDisc;
-      promoMsg.textContent = "Cod aplicat — reducere de 50%. Prețul tău este 55€.";
+      promoMsg.textContent = "Cod aplicat — economisești 34€. Prețul tău este 77€.";
       promoMsg.className = "promo-msg ok";
       promoIn.disabled = true; promoBtn.disabled = true; promoBtn.textContent = "✓";
     } else {
